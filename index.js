@@ -6,15 +6,13 @@ const port = 8082;
 
 const app = express();
 
-app.use(express.json());
-app.use(express.urlencoded({extended:true}))
+// app.use(express.json());
+// app.use(express.urlencoded({extended:true}))
 app.use(express.static(path.join(__dirname,'./client/dist')));
 
 app.get('/api/picture', (req, res) => {
-  console.log('hello')
   axios.get(`https://api.nasa.gov/planetary/apod?api_key=${key.KEY}`)
     .then(nasaData => {
-      console.log(nasaData.data);
       res.send(nasaData);
     })
     .catch(err => {
