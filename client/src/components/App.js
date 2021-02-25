@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from 'axios';
-import KEY from '../../../key.js';
+// import KEY from '../../../key.js';
 
 export default class App extends Component {
   constructor() {
@@ -14,10 +14,10 @@ export default class App extends Component {
     };
   }
 
-  fetchAPOD() {
-    axios.get(`https://api.nasa.gov/planetary/apod?api_key=${KEY}`)
+  componentDidMount(){
+    axios.get('/api/picture')
     .then(res => {
-      console.log(res.data)
+      console.log(res)
       this.setState({
         date: res.data.date,
         explanation: res.data.explanation,
@@ -28,13 +28,10 @@ export default class App extends Component {
     .catch(err => console.log(err));
   }
 
-  componentDidMount(){
-    this.fetchAPOD()
-  }
-
   render() {
     return (
       <div>
+        <h1>hi</h1>
         <p>{this.state.date}</p>
         <p>{this.state.explanation}</p>
         <p>{this.state.title}</p>
