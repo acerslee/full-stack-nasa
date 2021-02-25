@@ -14,12 +14,9 @@ export default class App extends Component {
   componentDidMount(){
     axios.get('/api/picture')
     .then(res => {
-      return axios.get(`/api/renderPicture/${res.data.insertId}`)
-    })
-    .then(res => {
-      console.log(res.data[0].picture);
+      console.log('response in client', res);
       this.setState({
-        picture: res.data[0].picture
+        picture: res.data
       })
     })
     .catch(err => console.log(err))

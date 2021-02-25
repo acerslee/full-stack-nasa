@@ -13,8 +13,9 @@ connection.connect((err) => {
   } else console.log('connected to mysql');
 });
 
-const getPicture = (id, callback) => {
-  connection.query('SELECT picture from nasa WHERE id = ?', [id], (err, picture) => {
+
+const getPictureByTitle = (data, callback) => {
+  connection.query('SELECT picture from nasa WHERE title = ?', data.title, (err, picture) => {
     if (err) {
       callback(err, null);
     } else {
@@ -52,6 +53,7 @@ const postPicture = (nasaInfo, callback) => {
 
 
 module.exports = {
-  getPicture,
+  getPictureByTitle,
+  getPictureById,
   postPicture
 }
