@@ -54,6 +54,5 @@ const postPicture = (nasaInfo, callback) => {
 
 module.exports = {
   getPictureByTitle,
-  getPictureById,
   postPicture
 }
