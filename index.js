@@ -14,13 +14,29 @@ app.use(express.static(path.join(__dirname,'./client/dist')));
 app.get('/api/picture', (req, res) => {
   axios.get(`https://api.nasa.gov/planetary/apod?api_key=${key.KEY}`)
     .then(apiResponse => {
-      console.log(apiResponse.data);
       queries.postPicture(apiResponse.data, (err, data) => {
-        console.log(data);
+        if (err) {
+          throw err
+        } else {
+          res.send(data);
+        }
       })
     })
     .catch(err => res.status(500).send('errrrrerr'));
 });
+
+app.get('/api/renderPicture/:id', (req, res) => {
+  console.log(req.params.id) //returns id
+
+  queries.getPicture(req.params.id, (err, picture) => {
+    if (err) {
+      throw err;
+    } else {
+      res.send(picture);
+    }
+  })
+
+})
 
 app.listen(port, () => {
   console.log(path.join(__dirname,'./client/src'))
