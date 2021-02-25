@@ -7,9 +7,6 @@ export default class App extends Component {
     super();
 
     this.state = {
-      date: '',
-      explanation: '',
-      title: '',
       picture: ''
     };
   }
@@ -19,9 +16,6 @@ export default class App extends Component {
     .then(res => {
       console.log(res)
       this.setState({
-        date: res.data.date,
-        explanation: res.data.explanation,
-        title: res.data.title,
         picture: res.data.url
       })
     })
@@ -32,9 +26,6 @@ export default class App extends Component {
     return (
       <div>
         <h1>hi</h1>
-        <p>{this.state.date}</p>
-        <p>{this.state.explanation}</p>
-        <p>{this.state.title}</p>
         <img src = {this.state.picture}></img>
       </div>
     );
